@@ -1,8 +1,9 @@
 // PlayerManagement.js in the src folder
-
+//Deprecated 
+//Not in use
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './FootballLeague.css'; // Make sure this CSS file is in place
+import './FootballLeague.css'; 
 
 const PlayerManagement = () => {
     const [playerGameStats, setPlayerGameStats] = useState({});
