@@ -1,6 +1,6 @@
-# A Football Stat Tracker
+# Football Stats Tracker
 ## Overview
-The **A Football Stat Tracker** is my passion project. At the end of my first production build, I intend it to be a versatile tool tailored for football enthusiasts, amateur teams and players to effortlessly manage and monitor their statistics. 
+The **Football Stats Tracker** is my passion project. At the end of my first production build, I intend it to be a versatile tool tailored for football enthusiasts, amateur teams and players to effortlessly manage and monitor their statistics. 
 Whether you're an indiviudal player aiming to keep a detailed record of your performance or a small league organizer seeking in-depth statistical insights, this app should be able to provide a comprehensive solution. For now, I've submitted a very barebones infrastructure.
 
 ## Key Features
