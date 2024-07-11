@@ -29,7 +29,4 @@ Make sure your system has the following prerequisites installed.
 ### Contributions or comments will be highly appreciated.
 
 # License
-GNU General Public License v3.0.
-
-# Contact
-Please reach out to ```ahmedfardin077@gmail.com``` for any inquiries.
+GNU General Public License v3.0
