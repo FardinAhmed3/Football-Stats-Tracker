@@ -79,7 +79,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-
+#Database configuration specific to each user
+#Only SQL Databases are supported at the moment. No support for NoSQL/MongoDB.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
