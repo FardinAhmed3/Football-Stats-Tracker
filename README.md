@@ -9,7 +9,8 @@ Whether you're an indiviudal player aiming to keep a detailed record of your per
 - Teams: Creation of teams.
   - I will implement a more robust team creation, especially creating temporary team using a list of available players
 - Clean UI is in the works.
-- Database Integration: All data is designed to be stored in a mySQL database.
+- Database Integration: All data is designed to be stored in a SQL Database
+
 
 ## Application is Work-In-Progress. 
 I have the backbones code here. I will continuously develop this project.
@@ -22,8 +23,27 @@ Make sure your system has the following prerequisites installed.
   - To install, type this in your terminal ``` pip install django ```
 - Django Rest Framework &  Django CORS Headers.
   - To install, type this in your terminal ``` pip install djangorestframework django-cors-headers ```
-- MySQL
-- Node.JS with NPM
+- MySQL 
+- You must manually provide the database details in ```Backend/backend/settings.py```
+```
+  DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysql_db_name',
+        'USER': 'db_username',
+        'PASSWORD': 'db_password',
+        'HOST':'localhost',
+        'PORT':'portlocation',
+    }
+}
+```
+
+- Node.JS with Node Package Manager (NPM)
+- To install required frontend packages, type the following commands in the terminal:
+```
+cd frontend/
+npm install
+```
 - Axios
 
 ### Contributions or comments will be highly appreciated.
