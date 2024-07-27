@@ -1,27 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 import { Radar } from 'react-chartjs-2';
 import { MenuItem, FormControl, Select, Box, Typography } from '@mui/material';
 import { Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend } from 'chart.js';
+import { useNavigate } from 'react-router-dom';
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
 const PlayerStats = () => {
   const [players, setPlayers] = useState([]);
   const [selectedPlayerId, setSelectedPlayerId] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/players');
+        const response = await axios.get('players/');
         setPlayers(response.data);
       } catch (error) {
-        console.error('Error fetching players: ', error.response ? error.response.data : error.message);
+        if (error.response && error.response.status === 401) {
+          // Redirect to login if unauthorized
+          navigate('/login');
+        } else {
+          console.error('Error fetching players: ', error.response ? error.response.data : error.message);
+        }
       }
     };
 
     fetchPlayers();
-  }, []);
+  }, [navigate]);
 
   const handleChange = (event) => {
     setSelectedPlayerId(event.target.value);
