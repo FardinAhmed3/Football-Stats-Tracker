@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const PlayersList = () => {
   const [players, setPlayers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/players');
+        const response = await axios.get('players/');
         setPlayers(response.data);
       } catch (error) {
-        console.error('Error fetching players: ', error.response ? error.response.data : error.message);
+        if (error.response && error.response.status === 401) {
+          // Redirect to login if unauthorized
+          navigate('/login');
+        } else {
+          console.error('Error fetching players: ', error.response ? error.response.data : error.message);
+        }
       }
     };
 
     fetchPlayers();
-  }, []);
+  }, [navigate]);
 
   return (
     <TableContainer component={Paper}>

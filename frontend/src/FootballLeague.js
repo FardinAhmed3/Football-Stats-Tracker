@@ -1,8 +1,6 @@
-// src/FootballLeague.js
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './FootballLeague.css'; // Ensure this CSS file exists in the src folder
+import './FootballLeague.css';
 
 // Set the base URL for all Axios requests
 axios.defaults.baseURL = 'http://localhost:8000/api';

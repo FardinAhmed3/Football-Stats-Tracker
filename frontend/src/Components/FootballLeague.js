@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 import { Container, TextField, Button, List, ListItem, ListItemText, Typography, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const FootballLeague = () => {
   const [teams, setTeams] = useState([]);
@@ -18,27 +19,38 @@ const FootballLeague = () => {
     dribble: '',
     physique: ''
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/teams/');
+        const response = await axios.get('teams/');
         setTeams(response.data);
       } catch (error) {
-        console.error('Error fetching teams: ', error.response ? error.response.data : error.message);
+        if (error.response && error.response.status === 401) {
+          // Redirect to login if unauthorized
+          navigate('/login');
+        } else {
+          console.error('Error fetching teams: ', error.response ? error.response.data : error.message);
+        }
       }
     };
 
     fetchTeams();
-  }, []);
+  }, [navigate]);
 
   const addTeam = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/api/teams/', { name: newTeam });
+      const response = await axios.post('teams/', { name: newTeam });
       setTeams(prevTeams => [...prevTeams, response.data]);
       setNewTeam('');
     } catch (error) {
-      console.error('Error adding team: ', error.response ? error.response.data : error.message);
+      if (error.response && error.response.status === 401) {
+        // Redirect to login if unauthorized
+        navigate('/login');
+      } else {
+        console.error('Error adding team: ', error.response ? error.response.data : error.message);
+      }
     }
   };
 
@@ -57,8 +69,8 @@ const FootballLeague = () => {
         dribble: newPlayer.dribble ? parseInt(newPlayer.dribble, 10) : 0,
         physique: newPlayer.physique ? parseInt(newPlayer.physique, 10) : 0,
       };
-  
-      const response = await axios.post('http://localhost:8000/api/players/', playerData);
+
+      const response = await axios.post('players/', playerData);
       console.log('Player added:', response.data);
       // Reset the player form to initial state
       setNewPlayer({
@@ -75,7 +87,12 @@ const FootballLeague = () => {
         physique: ''
       });
     } catch (error) {
-      console.error('Error creating player: ', error.response ? error.response.data : error.message);
+      if (error.response && error.response.status === 401) {
+        // Redirect to login if unauthorized
+        navigate('/login');
+      } else {
+        console.error('Error creating player: ', error.response ? error.response.data : error.message);
+      }
     }
   };
 
@@ -115,44 +132,41 @@ const FootballLeague = () => {
           margin="normal"
         />
         <TextField
-         label="Goals"
-         type="number"
-         variant="outlined"
-         value={newPlayer.goals}
-         onChange={(e) => setNewPlayer({ ...newPlayer, goals: e.target.value })}
-         fullWidth
-         margin="normal"
+          label="Goals"
+          type="number"
+          variant="outlined"
+          value={newPlayer.goals}
+          onChange={(e) => setNewPlayer({ ...newPlayer, goals: e.target.value })}
+          fullWidth
+          margin="normal"
         />
         <TextField
-         label="Assists"
-         type="number"
-         variant="outlined"
-         value={newPlayer.assists}
-         onChange={(e) => setNewPlayer({ ...newPlayer, assists: e.target.value })}
-         fullWidth
-         margin="normal"
+          label="Assists"
+          type="number"
+          variant="outlined"
+          value={newPlayer.assists}
+          onChange={(e) => setNewPlayer({ ...newPlayer, assists: e.target.value })}
+          fullWidth
+          margin="normal"
         />
-
         <TextField
-         label="Interceptions"
-         type="number"
-         variant="outlined"
-         value={newPlayer.interceptions}
-         onChange={(e) => setNewPlayer({ ...newPlayer, interceptions: e.target.value })}
-         fullWidth
-         margin="normal"
+          label="Interceptions"
+          type="number"
+          variant="outlined"
+          value={newPlayer.interceptions}
+          onChange={(e) => setNewPlayer({ ...newPlayer, interceptions: e.target.value })}
+          fullWidth
+          margin="normal"
         />
-
         <TextField
-         label="Fouls"
-         type="number"
-         variant="outlined"
-         value={newPlayer.fouls}
-         onChange={(e) => setNewPlayer({ ...newPlayer, fouls: e.target.value })}
-         fullWidth
-         margin="normal"
+          label="Fouls"
+          type="number"
+          variant="outlined"
+          value={newPlayer.fouls}
+          onChange={(e) => setNewPlayer({ ...newPlayer, fouls: e.target.value })}
+          fullWidth
+          margin="normal"
         />
-
         <TextField
           label="Pace"
           type="number"
