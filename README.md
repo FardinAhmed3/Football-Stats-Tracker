@@ -10,22 +10,23 @@ Whether you're an indiviudal player aiming to keep a detailed record of your per
   - I will implement a more robust team creation, especially creating temporary team using a list of available players
 - Clean UI is in the works.
 - Database Integration: All data is designed to be stored in a SQL Database
+- Authentication
 
 
 ## Application is Work-In-Progress. 
 I have the backbones code here. I will continuously develop this project.
 
-# If you'd like to contribute
 ## List of Prerequisites
-Make sure your system has the following prerequisites installed.
+Make sure your system has the following prerequisite packages installed.
 - Python
 - Django
   - To install, type this in your terminal ``` pip install django ```
-- Django Rest Framework &  Django CORS Headers.
-  - To install, type this in your terminal ``` pip install djangorestframework django-cors-headers ```
-- MySQL 
+  - Django Rest Framework,  Django CORS Headers & other required packages.
+  - ``` pip install djangorestframework djangorestframework-simplejwt django-cors-headers  ```
+- MySQL or any SQL DB
 - You must manually provide the database details in ```Backend/backend/settings.py```
 ```
+#For MySQL
   DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -44,7 +45,6 @@ Make sure your system has the following prerequisites installed.
 cd frontend/
 npm install
 ```
-- Axios
 
 ### Contributions or comments will be highly appreciated.
 
