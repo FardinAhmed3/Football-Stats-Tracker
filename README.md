@@ -38,7 +38,15 @@ Make sure your system has the following prerequisite packages installed.
     }
 }
 ```
-
+- For SQLite (built in DB), replace with
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
 - Node.JS with Node Package Manager (NPM)
 - To install required frontend packages, type the following commands in the terminal:
 ```
